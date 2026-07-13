@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JAS Agents — Terms &amp; Policies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root, html[data-theme="light"] {
+  --paper: #f2ece0;
+  --paper-2: #eae3d4;
+  --paper-3: #ddd3be;
+  --ink: #1a1612;
+  --ink-2: #4a423a;
+  --ink-3: #8a8172;
+  --rule: rgba(26, 22, 18, 0.14);
+  --rule-strong: rgba(26, 22, 18, 0.35);
+  --accent: #2b4de8;
+  --stamp: #c94a2b;
+  --wash: #e8e0cc;
+}
+html[data-theme="dark"] {
+  --paper: #1a1612;
+  --paper-2: #221d18;
+  --paper-3: #2c251e;
+  --ink: #f2ece0;
+  --ink-2: #c4bba9;
+  --ink-3: #7a7061;
+  --rule: rgba(242, 236, 224, 0.14);
+  --rule-strong: rgba(242, 236, 224, 0.35);
+  --accent: #7fa0ff;
+  --stamp: #e07050;
+  --wash: #2a241c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+::selection { background: var(--ink); color: var(--paper); }
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* language visibility */
+html[data-lang="en"] .ar { display: none; }
+html[data-lang="ar"] .en { display: none; }
+.ar {
+  direction: rtl;
+  font-family: 'IBM Plex Sans Arabic', 'DM Sans', system-ui, sans-serif;
+}
+.ar .mono, .keep-latin { font-family: 'JetBrains Mono', monospace; direction: ltr; unicode-bidi: embed; }
+
+/* fixed controls (match landing.html) */
+.theme-toggle, .lang-toggle {
+  position: fixed; top: 20px; z-index: 500;
+  width: 36px; height: 36px;
+  border: 1px solid var(--rule-strong); background: var(--paper);
+  color: var(--ink); cursor: pointer;
+  font-size: 14px; line-height: 1;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  transition: background 0.15s, color 0.15s;
+}
+.theme-toggle { right: 20px; }
+.lang-toggle  { right: 64px; font-size: 13px; }
+.theme-toggle:hover, .lang-toggle:hover { background: var(--ink); color: var(--paper); }
+
+/* header */
+header {
+  padding: 20px 116px 18px 48px; /* right side clears the fixed theme/lang buttons */
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { height: 40px; width: auto; display: block; }
+.brand .word { display: flex; flex-direction: column; gap: 2px; line-height: 1; }
+.brand .word b { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
+.back {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+  color: var(--ink-2); text-decoration: none; text-transform: uppercase;
+}
+.back:hover { color: var(--accent); }
+
+/* masthead */
+main { max-width: 860px; margin: 0 auto; padding: 72px 24px 96px; }
+.masthead { border-bottom: 1px solid var(--rule-strong); padding-bottom: 36px; margin-bottom: 12px; }
+.masthead .row {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+h1 {
+  font-weight: 600; letter-spacing: -0.04em; line-height: 0.95;
+  font-size: clamp(44px, 8vw, 88px);
+}
+.ar h1 { letter-spacing: 0; line-height: 1.15; }
+h1 .em { font-style: italic; color: var(--stamp); }
+.lede { margin-top: 20px; font-size: 16px; color: var(--ink-2); max-width: 560px; }
+.ar .lede { line-height: 1.9; }
+
+/* legal stamp */
+.stampbox {
+  display: inline-block; margin-top: 26px;
+  padding: 8px 16px;
+  border: 2px solid var(--stamp); color: var(--stamp);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.22em;
+  transform: rotate(-1.2deg);
+}
+
+/* sections */
+section { padding-top: 64px; }
+.sec-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+h2 { font-weight: 600; letter-spacing: -0.03em; font-size: clamp(26px, 3.6vw, 38px); }
+.ar h2 { letter-spacing: 0; }
+
+.clause { display: flex; gap: 22px; padding: 26px 0; border-bottom: 1px solid var(--rule); }
+.ar .clause { direction: rtl; }
+.clause .no {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em;
+  color: var(--accent); min-width: 44px; padding-top: 5px; direction: ltr;
+}
+.clause h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+.clause p, .clause li { font-size: 15px; color: var(--ink-2); }
+.ar .clause p, .ar .clause li { line-height: 1.9; }
+.clause ul { list-style: none; margin-top: 6px; }
+.clause li { padding: 5px 0; }
+.clause li::before { content: "—"; color: var(--ink-3); margin-inline-end: 10px; }
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 28px 48px 36px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+footer, footer a { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: var(--ink-3); text-transform: uppercase; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  header, footer { padding-left: 20px; padding-right: 20px; }
+  .clause { flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="theme-toggle" title="Toggle theme">☾</button>
+<button class="lang-toggle" id="lang-toggle" title="Change language">ع</button>
+
+<header>
+  <a class="brand" href="index.html">
+    <img src="assets/jas-mark-transparent.png" alt="JAS Agents" />
+    <span class="word">
+      <b class="keep-latin">JAS AGENTS</b>
+      <span class="mono">INTELLIGENCE ORCHESTRATED</span>
+    </span>
+  </a>
+  <span class="mono keep-latin">LEGAL SUPPLEMENT · PRINT &amp; DIGITAL</span>
+  <a class="back en" href="index.html">← Back to the broadside</a>
+  <a class="back ar" href="index.html">→ العودة إلى الصفحة الرئيسية</a>
+</header>
+
+<main>
+
+  <div class="masthead">
+    <div class="row">
+      <span class="mono keep-latin">VOL. I · LEGAL No. 01</span>
+      <span class="mono keep-latin">LAST UPDATED — JULY 2026</span>
+    </div>
+    <div class="en">
+      <h1>Terms &amp; <span class="em">policies.</span></h1>
+      <p class="lede">The terms that govern the use of JAS Agents services, how we collect,
+        use, and protect your data — including consent for WhatsApp messaging — and our
+        refund, cancellation, and delivery policies.</p>
+    </div>
+    <div class="ar">
+      <h1>الشروط <span class="em">والسياسات.</span></h1>
+      <p class="lede">الشروط التي تحكم استخدام خدمات JAS Agents، وكيفية جمع بياناتك واستخدامها
+        وحمايتها — بما في ذلك الموافقة على التواصل عبر WhatsApp — إضافةً إلى سياسات
+        الاسترجاع والإلغاء والتسليم.</p>
+    </div>
+    <span class="stampbox keep-latin">LEGAL — JAS AGENTS</span>
+  </div>
+
+  <!-- ═════════ TERMS & CONDITIONS ═════════ -->
+  <section id="terms">
+
+    <div class="en">
+      <div class="sec-head">
+        <h2>Terms &amp; Conditions</h2>
+        <span class="mono keep-latin">§ I — TERMS</span>
+      </div>
+      <p class="lede" style="margin-top:0; margin-bottom:8px;">Welcome to JAS Agents. By using our
+        services through our website or WhatsApp, you agree to the following Terms &amp; Conditions:</p>
+
+      <div class="clause"><span class="no">T-01</span><div>
+        <h3>Permitted use</h3>
+        <p>Our services may only be used for lawful purposes and in compliance with applicable Saudi regulations.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-02</span><div>
+        <h3>User responsibilities</h3>
+        <ul>
+          <li>Provide accurate and truthful information.</li>
+          <li>Do not use our services to send misleading, spam, or unlawful messages.</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">T-03</span><div>
+        <h3>Company responsibilities</h3>
+        <p>We strive to provide stable and secure services; however, uninterrupted availability is not guaranteed.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-04</span><div>
+        <h3>Intellectual property</h3>
+        <p>All trademarks, content, and software are the property of JAS Agents and may not be used without prior written consent.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-05</span><div>
+        <h3>Disclaimer</h3>
+        <p>JAS Agents is not liable for any direct or indirect damages resulting from misuse of the services.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-06</span><div>
+        <h3>Governing law</h3>
+        <p>These terms are governed by the laws of the Kingdom of Saudi Arabia, and any disputes shall fall under the jurisdiction of the courts of Jeddah.</p>
+      </div></div>
+    </div>
+
+    <div class="ar">
+      <div class="sec-head">
+        <h2>الشروط والأحكام</h2>
+        <span class="mono keep-latin">§ I — TERMS</span>
+      </div>
+      <p class="lede" style="margin-top:0; margin-bottom:8px;">مرحبًا بكم في JAS Agents. باستخدامك لخدماتنا
+        عبر موقعنا الإلكتروني أو تطبيق WhatsApp، فإنك توافق على الشروط والأحكام التالية:</p>
+
+      <div class="clause"><span class="no">T-01</span><div>
+        <h3>الاستخدام المسموح</h3>
+        <p>يجب استخدام خدماتنا لأغراض قانونية فقط ووفقًا للأنظمة واللوائح المعمول بها في المملكة العربية السعودية.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-02</span><div>
+        <h3>مسؤوليات المستخدم</h3>
+        <ul>
+          <li>تزويدنا بمعلومات صحيحة ودقيقة.</li>
+          <li>عدم استخدام خدماتنا لإرسال رسائل غير مرغوب بها أو مضللة أو مخالفة للأنظمة.</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">T-03</span><div>
+        <h3>مسؤوليات الشركة</h3>
+        <p>نلتزم بتقديم خدمات مستقرة وآمنة قدر الإمكان، ولا نضمن استمرارية الخدمة دون انقطاع في جميع الأوقات.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-04</span><div>
+        <h3>الملكية الفكرية</h3>
+        <p>جميع العلامات التجارية والمحتوى والأنظمة البرمجية مملوكة لـ JAS Agents، ولا يجوز استخدامها دون إذن خطي مسبق.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-05</span><div>
+        <h3>إخلاء المسؤولية</h3>
+        <p>لا تتحمل الشركة أي مسؤولية عن أي أضرار مباشرة أو غير مباشرة ناتجة عن سوء استخدام الخدمات.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">T-06</span><div>
+        <h3>القانون الحاكم</h3>
+        <p>تخضع هذه الشروط لأنظمة وقوانين المملكة العربية السعودية، وأي نزاع يكون من اختصاص محاكم مدينة جدة.</p>
+      </div></div>
+    </div>
+
+  </section>
+
+  <!-- ═════════ PRIVACY POLICY & WHATSAPP CONSENT ═════════ -->
+  <section id="privacy">
+
+    <div class="en">
+      <div class="sec-head">
+        <h2>Privacy Policy &amp; WhatsApp Consent</h2>
+        <span class="mono keep-latin">§ II — PRIVACY</span>
+      </div>
+      <p class="lede" style="margin-top:0; margin-bottom:8px;">JAS Agents is committed to protecting
+        your personal data and privacy.</p>
+
+      <div class="clause"><span class="no">P-01</span><div>
+        <h3>Information we collect</h3>
+        <ul>
+          <li>Name</li>
+          <li>Phone number</li>
+          <li>Email address</li>
+          <li>Any information you provide when registering or contacting us</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-02</span><div>
+        <h3>How we use your data</h3>
+        <ul>
+          <li>To provide services and respond to your requests</li>
+          <li>To send service-related notifications</li>
+          <li>To send marketing messages only after obtaining your explicit consent</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-03</span><div>
+        <h3>WhatsApp consent (opt-in)</h3>
+        <p>By checking the consent box or messaging us via WhatsApp, you explicitly agree to receive
+          messages from JAS Agents via WhatsApp, including marketing messages, utility messages,
+          and authentication messages.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">P-04</span><div>
+        <h3>Opt-out</h3>
+        <p>You may unsubscribe at any time by:</p>
+        <ul>
+          <li>Replying <b class="keep-latin">STOP</b> to any WhatsApp message</li>
+          <li>Or contacting us directly to request removal</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-05</span><div>
+        <h3>Data sharing</h3>
+        <p>We do not share your data with third parties except:</p>
+        <ul>
+          <li>WhatsApp API providers</li>
+          <li>Payment service providers</li>
+          <li>When required by law</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-06</span><div>
+        <h3>Data protection</h3>
+        <p>We apply appropriate technical and organizational measures to protect your data.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">P-07</span><div>
+        <h3>User rights</h3>
+        <p>You may request access to, correction of, or deletion of your personal data.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">P-08</span><div>
+        <h3>Policy updates</h3>
+        <p>Any changes to this Privacy Policy will be announced through our website or official channels.</p>
+      </div></div>
+    </div>
+
+    <div class="ar">
+      <div class="sec-head">
+        <h2>سياسة الخصوصية وموافقة واتساب</h2>
+        <span class="mono keep-latin">§ II — PRIVACY</span>
+      </div>
+      <p class="lede" style="margin-top:0; margin-bottom:8px;">تلتزم JAS Agents بحماية خصوصية بيانات عملائها.</p>
+
+      <div class="clause"><span class="no">P-01</span><div>
+        <h3>المعلومات التي نقوم بجمعها</h3>
+        <ul>
+          <li>الاسم</li>
+          <li>رقم الهاتف</li>
+          <li>البريد الإلكتروني</li>
+          <li>أي معلومات أخرى تقدمها عند التسجيل أو التواصل معنا</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-02</span><div>
+        <h3>كيفية استخدام البيانات</h3>
+        <ul>
+          <li>تقديم الخدمات والتواصل معك بخصوص طلباتك</li>
+          <li>إرسال إشعارات خدمية أو معلومات متعلقة بالخدمات</li>
+          <li>إرسال عروض أو رسائل تسويقية عبر WhatsApp فقط بعد الحصول على موافقتك الصريحة</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-03</span><div>
+        <h3>الموافقة على التواصل عبر WhatsApp (Opt-In)</h3>
+        <p>بقيامك بتحديد خيار الموافقة أو إرسال رسالة لنا عبر WhatsApp، فإنك توافق صراحةً على استلام
+          رسائل من JAS Agents عبر تطبيق WhatsApp، وتشمل هذه الرسائل: الرسائل الخدمية،
+          الرسائل التسويقية، ورسائل التحقق.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">P-04</span><div>
+        <h3>إلغاء الاشتراك (Opt-Out)</h3>
+        <p>يمكنك إلغاء الاشتراك في أي وقت:</p>
+        <ul>
+          <li>بالرد بكلمة <b class="keep-latin">STOP</b> على أي رسالة WhatsApp</li>
+          <li>أو بالتواصل معنا مباشرة لطلب إيقاف الرسائل</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-05</span><div>
+        <h3>مشاركة البيانات</h3>
+        <p>لا نقوم بمشاركة بياناتك مع أي طرف ثالث إلا:</p>
+        <ul>
+          <li>مزود WhatsApp API</li>
+          <li>شركات الدفع</li>
+          <li>أو إذا طُلب ذلك بموجب القانون</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-06</span><div>
+        <h3>حماية البيانات</h3>
+        <p>نطبق إجراءات تقنية وتنظيمية لحماية بياناتك من الوصول غير المصرح به.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">P-07</span><div>
+        <h3>حقوق المستخدم</h3>
+        <p>يحق لك طلب:</p>
+        <ul>
+          <li>نسخة من بياناتك</li>
+          <li>تصحيح بياناتك</li>
+          <li>حذف بياناتك</li>
+        </ul>
+      </div></div>
+
+      <div class="clause"><span class="no">P-08</span><div>
+        <h3>التعديلات</h3>
+        <p>قد نقوم بتحديث هذه السياسة من وقت لآخر، وسيتم الإعلان عن أي تغييرات عبر موقعنا أو قنواتنا الرسمية.</p>
+      </div></div>
+    </div>
+
+  </section>
+
+  <!-- ═════════ REFUND POLICY ═════════ -->
+  <section id="refund">
+
+    <div class="en">
+      <div class="sec-head">
+        <h2>Refund Policy</h2>
+        <span class="mono keep-latin">§ III — REFUNDS</span>
+      </div>
+
+      <div class="clause"><span class="no">R-01</span><div>
+        <h3>Eligibility</h3>
+        <p>Refund requests must be submitted within 14 days of payment. Refunds are considered
+          where the service has not yet been activated, or where a confirmed technical failure
+          attributable to JAS Agents could not be resolved.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">R-02</span><div>
+        <h3>Non-refundable amounts</h3>
+        <p>Fees for services already delivered or consumed — including usage-based charges and
+          completed billing periods — are non-refundable unless required by law.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">R-03</span><div>
+        <h3>How to request a refund</h3>
+        <p>Contact us through our official channels with your payment reference. Approved refunds
+          are returned to the original payment method within 7–14 business days, depending on the
+          bank or card issuer.</p>
+      </div></div>
+    </div>
+
+    <div class="ar">
+      <div class="sec-head">
+        <h2>سياسة الاسترجاع</h2>
+        <span class="mono keep-latin">§ III — REFUNDS</span>
+      </div>
+
+      <div class="clause"><span class="no">R-01</span><div>
+        <h3>الأهلية</h3>
+        <p>يجب تقديم طلب الاسترجاع خلال 14 يومًا من تاريخ الدفع. يُنظر في طلبات الاسترجاع إذا لم يتم
+          تفعيل الخدمة بعد، أو عند وجود خلل تقني مؤكد من جانب JAS Agents تعذّر حله.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">R-02</span><div>
+        <h3>المبالغ غير القابلة للاسترجاع</h3>
+        <p>الرسوم مقابل الخدمات المقدَّمة أو المستهلكة فعليًا — بما في ذلك رسوم الاستخدام وفترات
+          الفوترة المكتملة — غير قابلة للاسترجاع ما لم يقضِ القانون بخلاف ذلك.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">R-03</span><div>
+        <h3>طريقة طلب الاسترجاع</h3>
+        <p>تواصل معنا عبر قنواتنا الرسمية مع ذكر مرجع الدفع. تُعاد المبالغ المعتمدة إلى وسيلة الدفع
+          الأصلية خلال 7–14 يوم عمل، حسب البنك أو جهة إصدار البطاقة.</p>
+      </div></div>
+    </div>
+
+  </section>
+
+  <!-- ═════════ CANCELLATION POLICY ═════════ -->
+  <section id="cancellation">
+
+    <div class="en">
+      <div class="sec-head">
+        <h2>Cancellation Policy</h2>
+        <span class="mono keep-latin">§ IV — CANCELLATION</span>
+      </div>
+
+      <div class="clause"><span class="no">C-01</span><div>
+        <h3>Cancelling a subscription</h3>
+        <p>You may cancel your subscription at any time through your account or by contacting us.
+          Cancellation takes effect at the end of the current billing period, and access continues
+          until then.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">C-02</span><div>
+        <h3>Cancelling before activation</h3>
+        <p>Orders cancelled before the service is activated are eligible for a full refund in
+          accordance with the Refund Policy.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">C-03</span><div>
+        <h3>Cancellation by JAS Agents</h3>
+        <p>We may suspend or terminate services that violate the Terms &amp; Conditions or
+          applicable law, with prior notice where reasonably possible.</p>
+      </div></div>
+    </div>
+
+    <div class="ar">
+      <div class="sec-head">
+        <h2>سياسة الإلغاء</h2>
+        <span class="mono keep-latin">§ IV — CANCELLATION</span>
+      </div>
+
+      <div class="clause"><span class="no">C-01</span><div>
+        <h3>إلغاء الاشتراك</h3>
+        <p>يمكنك إلغاء اشتراكك في أي وقت من خلال حسابك أو بالتواصل معنا. يسري الإلغاء بنهاية دورة
+          الفوترة الحالية، ويستمر وصولك إلى الخدمة حتى ذلك الحين.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">C-02</span><div>
+        <h3>الإلغاء قبل التفعيل</h3>
+        <p>الطلبات الملغاة قبل تفعيل الخدمة مؤهلة لاسترجاع كامل المبلغ وفقًا لسياسة الاسترجاع.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">C-03</span><div>
+        <h3>الإلغاء من جانب الشركة</h3>
+        <p>يحق لنا تعليق أو إنهاء الخدمات التي تخالف الشروط والأحكام أو الأنظمة المعمول بها، مع
+          إشعار مسبق متى أمكن ذلك.</p>
+      </div></div>
+    </div>
+
+  </section>
+
+  <!-- ═════════ DELIVERY POLICY & METHOD ═════════ -->
+  <section id="delivery">
+
+    <div class="en">
+      <div class="sec-head">
+        <h2>Delivery Policy &amp; Method</h2>
+        <span class="mono keep-latin">§ V — DELIVERY</span>
+      </div>
+
+      <div class="clause"><span class="no">D-01</span><div>
+        <h3>Digital delivery</h3>
+        <p>JAS Agents provides digital services. Delivery is electronic — through our web platforms
+          and WhatsApp integrations. No physical goods are shipped.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">D-02</span><div>
+        <h3>Delivery timeline</h3>
+        <p>Access credentials and service activation are delivered within 1–3 business days of
+          payment confirmation, unless otherwise agreed in writing.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">D-03</span><div>
+        <h3>Delivery support</h3>
+        <p>If you do not receive access within the stated timeline, contact us through our official
+          channels and we will resolve it promptly.</p>
+      </div></div>
+    </div>
+
+    <div class="ar">
+      <div class="sec-head">
+        <h2>سياسة التسليم وطريقته</h2>
+        <span class="mono keep-latin">§ V — DELIVERY</span>
+      </div>
+
+      <div class="clause"><span class="no">D-01</span><div>
+        <h3>تسليم رقمي</h3>
+        <p>تقدم JAS Agents خدمات رقمية، ويتم التسليم إلكترونيًا عبر منصاتنا على الويب وتكاملات
+          WhatsApp، ولا يتم شحن أي سلع مادية.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">D-02</span><div>
+        <h3>مدة التسليم</h3>
+        <p>يتم تسليم بيانات الوصول وتفعيل الخدمة خلال 1–3 أيام عمل من تأكيد الدفع، ما لم يُتفق
+          كتابيًا على خلاف ذلك.</p>
+      </div></div>
+
+      <div class="clause"><span class="no">D-03</span><div>
+        <h3>دعم التسليم</h3>
+        <p>إذا لم تستلم الوصول خلال المدة المذكورة، تواصل معنا عبر قنواتنا الرسمية وسنعالج الأمر
+          فورًا.</p>
+      </div></div>
+    </div>
+
+  </section>
+
+  <!-- payment brands — payment-gateway KYC requires visible Visa & MasterCard marks -->
+  <div style="margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 12px;">
+    <span class="mono en">WE ACCEPT</span>
+    <span class="mono ar" style="font-family: 'IBM Plex Sans Arabic', sans-serif; letter-spacing: 0.03em; font-size: 12px;">نقبل الدفع عبر</span>
+    <svg width="46" height="28" viewBox="0 0 46 28" role="img" aria-label="Visa">
+      <rect width="46" height="28" rx="3" fill="#ffffff" stroke="rgba(26,22,18,0.2)"/>
+      <text x="23" y="18.5" text-anchor="middle" font-family="'DM Sans', sans-serif" font-style="italic" font-weight="700" font-size="12" fill="#1A1F71">VISA</text>
+    </svg>
+    <svg width="46" height="28" viewBox="0 0 46 28" role="img" aria-label="MasterCard">
+      <rect width="46" height="28" rx="3" fill="#ffffff" stroke="rgba(26,22,18,0.2)"/>
+      <circle cx="18.5" cy="14" r="8" fill="#EB001B"/>
+      <circle cx="27.5" cy="14" r="8" fill="#F79E1B"/>
+      <path d="M23 7.5a8 8 0 0 1 0 13 8 8 0 0 1 0-13z" fill="#FF5F00"/>
+    </svg>
+  </div>
+
+</main>
+
+<footer>
+  <span class="keep-latin">© JAS AGENTS · MMXXVI</span>
+  <span>
+    <a href="#terms" class="en">TERMS</a><a href="#terms" class="ar">الشروط</a>
+    &nbsp;·&nbsp;
+    <a href="#privacy" class="en">PRIVACY</a><a href="#privacy" class="ar">الخصوصية</a>
+    &nbsp;·&nbsp;
+    <a href="#refund" class="en">REFUNDS</a><a href="#refund" class="ar">الاسترجاع</a>
+    &nbsp;·&nbsp;
+    <a href="#cancellation" class="en">CANCELLATION</a><a href="#cancellation" class="ar">الإلغاء</a>
+    &nbsp;·&nbsp;
+    <a href="#delivery" class="en">DELIVERY</a><a href="#delivery" class="ar">التسليم</a>
+  </span>
+  <a href="index.html" class="keep-latin">JAS.IT.COM</a>
+</footer>
+
+<script>
+// Theme — shares the 'jas-theme' key with landing.html
+var theme = localStorage.getItem('jas-theme') || 'light';
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('jas-theme', t);
+  theme = t;
+  document.getElementById('theme-toggle').textContent = t === 'light' ? '☾' : '☀';
+}
+applyTheme(theme);
+document.getElementById('theme-toggle').addEventListener('click', function () {
+  applyTheme(theme === 'light' ? 'dark' : 'light');
+});
+
+// Language — shares the 'jas-lang' key with landing.html
+var lang = localStorage.getItem('jas-lang') || 'en';
+function applyLang(l) {
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.setAttribute('lang', l);
+  localStorage.setItem('jas-lang', l);
+  lang = l;
+  document.getElementById('lang-toggle').textContent = l === 'ar' ? 'EN' : 'ع';
+}
+applyLang(lang);
+document.getElementById('lang-toggle').addEventListener('click', function () {
+  applyLang(lang === 'en' ? 'ar' : 'en');
+});
+</script>
+
+</body>
+</html>
