@@ -214,7 +214,8 @@ const I18N = {
 
     // Footer
     "footer.location":      "AMMAN · JORDAN",
-    "contact.address":      "Taiba Commercial Complex, Prince Hassan Street (formerly Madaba Street), opposite Qasr Al-Ghaba Restaurant, Amman, Jordan",
+    "footer.legal":         "JAS Agents is the name we use for our technology and AI services, which are provided by شركة الحلول النوعية للذكاء الاصطناعي (a limited liability company registered in the Hashemite Kingdom of Jordan).",
+    "contact.address":      "Taiba Commercial Complex, Building 19, Prince Hassan Street (formerly Madaba Street), Amman, Jordan",
     "footer.copy":          "© 2026 JAS Agents. Orchestra AI — autonomous operations for logistics. Built by operating, not by demonstrating.",
     "footer.docs":          "Docs",
     "footer.status":        "Status",
@@ -670,7 +671,8 @@ const I18N = {
 
     // Footer
     "footer.location":      "عمّان · الأردن",
-    "contact.address":      "مجمع طيبة التجاري، شارع الأمير الحسن (شارع مادبا سابقًا)، مقابل مطعم قصر الغابة، عمّان، الأردن",
+    "footer.legal":         "JAS Agents هو اسم نستخدمه للتعريف بخدماتنا التقنية والذكاء الاصطناعي، والتي تقدمها شركة الحلول النوعية للذكاء الاصطناعي / ذات مسؤولية محدودة، المسجلة في المملكة الأردنية الهاشمية.",
+    "contact.address":      "مجمع طيبة التجاري، عمارة رقم 19، شارع الأمير الحسن (شارع مادبا سابقاً)، عمّان، الأردن",
     "footer.copy":          "© ٢٠٢٦ جاس. Orchestra AI — عمليّاتٌ ذاتيّة للخدمات اللوجستية. بُني بالتشغيل، لا بالعرض.",
     "footer.docs":          "التوثيق",
     "footer.status":        "الحالة",

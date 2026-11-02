@@ -1313,6 +1313,7 @@ function Footer() {
         }}>
           <address style={{ fontStyle: "normal", lineHeight: 1.7 }}>
             <div>{t("footer.copy")}</div>
+            <div>{t("footer.legal")}</div>
             <div>{t("contact.address")}</div>
             <div className="keep-latin">
               <a href={`tel:${CONTACT_PHONE}`} style={{ color: "var(--ink-2)" }}>{CONTACT_PHONE_DISPLAY}</a>
