@@ -9,9 +9,15 @@ const PRODUCT_URLS = {
   orchestra: "https://order.jas.it.com/",
 };
 
+// Single place to change the contact address used by every CTA on the page
+const CONTACT_EMAIL = "info@jas.it.com";
+const CONTACT_PHONE = "+962798000383";
+const CONTACT_PHONE_DISPLAY = "+962 79 800 0383";
+const DEMO_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Orchestra AI pilot request")}`;
+
 const NAV_PRODUCTS = [
-  { id: "omnibox",   label: "OmniBox",      descKey: "product.omnibox.desc",   tagKey: "product.omnibox.tag",   url: PRODUCT_URLS.omnibox   },
   { id: "orchestra", label: "Orchestra AI", descKey: "product.orchestra.desc", tagKey: "product.orchestra.tag", url: PRODUCT_URLS.orchestra },
+  { id: "omnibox",   label: "OmniBox",      descKey: "product.omnibox.desc",   tagKey: "product.omnibox.tag",   url: PRODUCT_URLS.omnibox   },
 ];
 
 function Nav() {
@@ -29,7 +35,7 @@ function Nav() {
       borderBottom: "1px solid var(--rule)",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <img src="assets/jas-mark-transparent.png" alt="JAS Agents" style={{
+        <img src="assets/jas-mark-transparent.png" alt="JAS Agents logo" width="45" height="40" style={{
           height: 40, width: "auto", display: "block",
           filter: "contrast(1.05)",
         }}/>
@@ -50,7 +56,7 @@ function Nav() {
         <div style={{ position: "relative" }}
           onMouseEnter={() => setProductsOpen(true)}
           onMouseLeave={() => { setProductsOpen(false); setHoveredProduct(null); }}>
-          <a href="#" style={{
+          <a href="#loop" style={{
             color: productsOpen ? "var(--ink)" : "var(--ink-2)",
             textDecoration: "none", transition: "color 0.15s",
             display: "flex", alignItems: "center", gap: 5,
@@ -116,7 +122,7 @@ function Nav() {
             ))}
 
             <div style={{ padding: "9px 16px", display: "flex", justifyContent: "flex-end" }}>
-              <a href="#agents" style={{
+              <a href="#loop" style={{
                 fontFamily: "'JetBrains Mono', monospace", fontSize: 9,
                 letterSpacing: "0.15em", color: "var(--accent)", textDecoration: "none",
               }}>VIEW ALL →</a>
@@ -126,26 +132,25 @@ function Nav() {
         </div>
 
         {[
-          { key: "nav.manifest",   label: t("nav.manifest") },
-          { key: "nav.primitives", label: t("nav.primitives") },
-          { key: "nav.studio",     label: t("nav.studio") },
-          { key: "nav.journal",    label: t("nav.journal") },
-          { key: "nav.pricing",    label: t("nav.pricing") },
+          { key: "nav.how",       href: "#loop" },
+          { key: "nav.verticals", href: "#verticals" },
+          { key: "nav.pilot",     href: "#pilot" },
+          { key: "nav.faq",       href: "#faq" },
         ].map(l => (
-          <a key={l.key} href="#" style={{ color: "var(--ink-2)", textDecoration: "none", transition: "color 0.15s" }}
+          <a key={l.key} href={l.href} style={{ color: "var(--ink-2)", textDecoration: "none", transition: "color 0.15s" }}
             onMouseEnter={(e) => e.currentTarget.style.color = "var(--ink)"}
             onMouseLeave={(e) => e.currentTarget.style.color = "var(--ink-2)"}>
-            {l.label}
+            {t(l.key)}
           </a>
         ))}
         </div>
 
-        <button style={{
+        <a href={DEMO_MAILTO} style={{
           padding: "8px 16px",
           background: "var(--ink)", color: "var(--paper)",
           border: "none", fontSize: 12, fontWeight: 500, letterSpacing: "0.02em",
-          cursor: "pointer", fontFamily: "inherit",
-        }}>{t("nav.cta")}</button>
+          cursor: "pointer", fontFamily: "inherit", textDecoration: "none",
+        }}>{t("nav.cta")}</a>
       </div>
       <style>{`@media (max-width: 820px){ .jas-nav{ padding: 14px 20px !important; } .jas-nav-links{ display: none !important; } .folio{ display: none !important; } }`}</style>
     </nav>
@@ -156,7 +161,7 @@ function Nav() {
 function Hero() {
   const { t, isAr } = window.useLang();
   return (
-    <section style={{
+    <section className="hero" style={{
       position: "relative",
       paddingTop: 168, paddingBottom: 80,
       padding: "168px 48px 80px",
@@ -178,55 +183,39 @@ function Hero() {
 
       {/* Big headline block */}
       <div style={{ maxWidth: 1400, margin: "0 auto", width: "100%" }}>
-        <div className="reveal-ink" style={{
+        <p style={{
+          fontFamily: isAr ? "'IBM Plex Sans Arabic', sans-serif" : "'JetBrains Mono', monospace",
+          fontSize: isAr ? 13 : 11, letterSpacing: isAr ? "0.03em" : "0.25em",
+          color: "var(--accent)", marginBottom: 28,
+        }}>{t("hero.eyebrow")}</p>
+        <h1 className="reveal-ink" style={{
           fontFamily: isAr ? "'IBM Plex Sans Arabic', sans-serif" : "'DM Sans', sans-serif",
           fontWeight: 700, letterSpacing: "-0.05em",
-          fontSize: isAr ? "clamp(64px, 11vw, 170px)" : "clamp(72px, 13vw, 200px)",
+          fontSize: isAr ? "clamp(46px, 7.6vw, 124px)" : "clamp(46px, 7.8vw, 128px)",
           lineHeight: isAr ? 1.02 : 0.86,
           letterSpacing: isAr ? "-0.02em" : "-0.04em",
           color: "var(--ink)",
           fontWeight: 500,
           marginBottom: 24,
         }}>
-          {isAr ? (
-            <>
-              {t("hero.h_an")}{" "}
-              <span className="italic" style={{ fontStyle: "italic", color: "var(--ink-2)" }}>{t("hero.h_operating")}</span><br/>
-              {t("hero.h_sysfor")}{" "}
-              <span style={{ position: "relative", display: "inline-block" }}>
-                {t("hero.h_intel")}
-                <svg aria-hidden style={{
-                  position: "absolute", left: 0, right: 0, bottom: "0.08em",
-                  width: "100%", height: "0.18em",
-                }} viewBox="0 0 400 12" preserveAspectRatio="none">
-                  <path d="M2 8 C 80 2, 160 11, 240 5 S 390 8, 398 4" fill="none"
-                    stroke="var(--stamp)" strokeWidth="2.5" strokeLinecap="round"/>
-                </svg>
-              </span>
-              {t("hero.h_agents")}
-            </>
-          ) : (
-            <>
-              {t("hero.h_an")} <span className="italic" style={{ fontStyle: "italic", color: "var(--ink-2)" }}>{t("hero.h_operating")}</span><br/>
-              {t("hero.h_sysfor")}<br/>
-              <span style={{ position: "relative", display: "inline-block" }}>
-                {t("hero.h_intel")}
-                {/* Red pen underline */}
-                <svg aria-hidden style={{
-                  position: "absolute", left: 0, right: 0, bottom: "0.08em",
-                  width: "100%", height: "0.18em",
-                }} viewBox="0 0 400 12" preserveAspectRatio="none">
-                  <path d="M2 8 C 80 2, 160 11, 240 5 S 390 8, 398 4" fill="none"
-                    stroke="var(--stamp)" strokeWidth="2.5" strokeLinecap="round"/>
-                </svg>
-              </span>{" "}
-              {t("hero.h_agents")}
-            </>
-          )}
-        </div>
+          {t("hero.h1")}{" "}
+          <span className="italic" style={{ fontStyle: "italic", color: "var(--accent)" }}>{t("hero.h2")}</span><br/>
+          {t("hero.h3")}{" "}
+          <span style={{ position: "relative", display: "inline-block" }}>
+            {t("hero.h4")}
+            {/* Red pen underline */}
+            <svg aria-hidden style={{
+              position: "absolute", left: 0, right: 0, bottom: "0.02em",
+              width: "100%", height: "0.18em",
+            }} viewBox="0 0 400 12" preserveAspectRatio="none">
+              <path d="M2 8 C 80 2, 160 11, 240 5 S 390 8, 398 4" fill="none"
+                stroke="var(--stamp)" strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
+          </span>
+        </h1>
 
         {/* Lower row: short lede + run-up numbers */}
-        <div style={{
+        <div className="hero-row" style={{
           display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: 80,
           marginTop: 64, alignItems: "end",
         }}>
@@ -250,20 +239,24 @@ function Hero() {
                 t("hero.lede_cap") + t("hero.lede_rest")
               )}
             </p>
+            <p style={{
+              marginTop: 18, fontSize: isAr ? 17 : 16, fontWeight: 600, color: "var(--stamp)",
+              fontFamily: isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined,
+            }}>{t("hero.proof")}</p>
 
             <div style={{ display: "flex", gap: 14, marginTop: 40, alignItems: "center" }}>
-              <button style={{
+              <a href={DEMO_MAILTO} style={{
                 padding: "14px 26px",
                 background: "var(--ink)", color: "var(--paper)",
                 border: "none", fontSize: 13, fontWeight: 500, letterSpacing: "0.02em",
-                cursor: "pointer", fontFamily: "inherit",
-              }}>{t("hero.cta_primary")}</button>
-              <button style={{
+                cursor: "pointer", fontFamily: "inherit", textDecoration: "none",
+              }}>{t("hero.cta_primary")}</a>
+              <a href="#loop" style={{
                 padding: "14px 22px",
                 background: "transparent", color: "var(--ink)",
                 border: "1px solid var(--rule-strong)", fontSize: 13,
-                fontWeight: 500, cursor: "pointer", fontFamily: "inherit",
-              }}>{t("hero.cta_secondary")}</button>
+                fontWeight: 500, cursor: "pointer", fontFamily: "inherit", textDecoration: "none",
+              }}>{t("hero.cta_secondary")}</a>
             </div>
           </div>
 
@@ -276,10 +269,10 @@ function Hero() {
           }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
               {[
-                { k: t("hero.stat.dispatched"), v: "142M",             keepLatin: true },
-                { k: t("hero.stat.latency"),    v: "38ms",             keepLatin: true },
-                { k: t("hero.stat.regions"),    v: "17",               keepLatin: true },
-                { k: t("hero.stat.production"), v: t("hero.stat.firms"), keepLatin: false },
+                { k: t("hero.stat.autonomous"), v: "24/7",   keepLatin: true },
+                { k: t("hero.stat.recovery"),   v: "70%+",   keepLatin: true },
+                { k: t("hero.stat.detect"),     v: "<2 min", keepLatin: true },
+                { k: t("hero.stat.verticals"),  v: "5",      keepLatin: true },
               ].map((s, i) => (
                 <div key={i}>
                   <div style={{
@@ -311,6 +304,7 @@ function Hero() {
         <div>{t("hero.plate")}</div>
         <div>{t("hero.continued")}</div>
       </div>
+      <style>{`@media (max-width: 820px){ .hero{ padding: 128px 20px 56px !important; } .hero-row{ grid-template-columns: 1fr !important; gap: 40px !important; } }`}</style>
     </section>
   );
 }
@@ -326,7 +320,9 @@ function LogoStrip() {
     { name: "HARDEE'S",   kind: "RESTAURANTS",   r: -1.8 },
     { name: "ABU KHADER BMW", kind: "AUTOMOTIVE", r: 1.1 },
     { name: "SUMACCO",    kind: "RESTAURANT",    r: -0.7 },
+    { name: "HYPERMAX",   kind: "RETAIL",        r: 0.9 },
     { name: "DIKEN GROUP",kind: "HOLDING",       r: 0.4 },
+    { name: "CAREEM",     kind: "DELIVERY",      r: -1.0 },
   ];
   return (
     <section style={{
@@ -638,7 +634,8 @@ function Compare({ oldLabel, newLabel, rows, isAr }) {
 }
 
 // ═════════ DEEP-DIVE: shared editorial flow figure ═════════
-function FlowFigure({ steps, isAr }) {
+function FlowFigure({ steps, isAr, showStepLabels = false }) {
+  const cols = steps.length;
   const arFont = isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined;
   const arrow = isAr ? "←" : "→";
   return (
@@ -666,17 +663,17 @@ function FlowFigure({ steps, isAr }) {
       </div>
 
       {/* stage cards */}
-      <div className="flow-cards" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0 }}>
+      <div className="flow-cards" style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 0 }}>
         {steps.map((s, i) => (
           <div key={i} style={{
             paddingInlineEnd: 22, paddingInlineStart: i === 0 ? 0 : 22,
-            borderInlineEnd: i < 3 ? "1px solid var(--rule)" : "none",
+            borderInlineEnd: i < cols - 1 ? "1px solid var(--rule)" : "none",
             textAlign: isAr ? "right" : "left",
           }}>
             <div className="keep-latin" style={{
               fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
               letterSpacing: "0.18em", color: "var(--accent)", marginBottom: 12,
-            }}>{String(i + 1).padStart(2, "0")}</div>
+            }}>{showStepLabels ? s.step : String(i + 1).padStart(2, "0")}</div>
             <div style={{ fontSize: 16.5, fontWeight: 600, color: "var(--ink)", marginBottom: 7, lineHeight: 1.2, fontFamily: arFont }}>{s.title}</div>
             <div style={{ fontSize: 13, lineHeight: 1.55, color: "var(--ink-2)", fontFamily: arFont }}>{s.desc}</div>
           </div>
@@ -763,8 +760,8 @@ function OrchestraSection() {
 
 // ═════════ THE AGENTS — merged interactive product picker ═════════
 const AGENTS = [
-  { id: "ob", name: "OmniBox",      taglineKey: "fleet.omnibox.tagline",   bodyKey: "ob.body", prefix: "ob", ctaKey: "fleet.omnibox.cta",   url: PRODUCT_URLS.omnibox   },
-  { id: "or", name: "Orchestra AI", taglineKey: "fleet.orchestra.tagline", bodyKey: "or.body", prefix: "or", ctaKey: "fleet.orchestra.cta", url: PRODUCT_URLS.orchestra },
+  { id: "ob", name: "OmniBox",      taglineKey: "fleet.omnibox.tagline",   bodyKey: "fleet.omnibox.body", prefix: "ob", ctaKey: "fleet.omnibox.cta",   url: PRODUCT_URLS.omnibox   },
+  { id: "or", name: "Orchestra AI", taglineKey: "fleet.orchestra.tagline", bodyKey: "fleet.orchestra.body", prefix: "or", ctaKey: "fleet.orchestra.cta", url: PRODUCT_URLS.orchestra },
 ];
 
 function AgentsSection() {
@@ -777,6 +774,7 @@ function AgentsSection() {
   const tagline = t(ag.taglineKey);
   const steps = [1, 2, 3, 4].map(n => ({ step: t(`${ag.prefix}.flow${n}.step`), title: t(`${ag.prefix}.flow${n}.t`), desc: t(`${ag.prefix}.flow${n}.d`) }));
   const cmp = [1, 2, 3, 4, 5].map(n => ({ a: t(`${ag.prefix}.cmp${n}.a`), b: t(`${ag.prefix}.cmp${n}.b`) }));
+  const caps = [1, 2, 3, 4, 5, 6].map(n => ({ tag: t(`${ag.prefix}.cap${n}.tag`), t: t(`${ag.prefix}.cap${n}.t`), d: t(`${ag.prefix}.cap${n}.d`) }));
 
   useEffectS(() => {
     setTyped(0);
@@ -788,7 +786,7 @@ function AgentsSection() {
   }, [active, tagline]);
 
   return (
-    <section id="agents" style={{ padding: "140px 48px", borderBottom: "1px solid var(--rule)" }}>
+    <section id="agents" className="pad-sec" style={{ padding: "140px 48px", borderBottom: "1px solid var(--rule)" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         {/* header */}
         <div style={{
@@ -801,6 +799,26 @@ function AgentsSection() {
         }}>
           <div>{t("agents.section")}</div>
           <div className={isAr ? "" : "keep-latin"}>{t("agents.fig")}</div>
+        </div>
+
+        {/* intro */}
+        <div className="dd-head" style={{
+          display: "grid", gridTemplateColumns: isAr ? "1fr 1.15fr" : "1.15fr 1fr",
+          gap: 56, alignItems: "end", direction: isAr ? "rtl" : "ltr", marginBottom: 44,
+        }}>
+          <h2 className="wordmark" style={{
+            fontSize: "clamp(38px, 5vw, 68px)", lineHeight: 0.97,
+            letterSpacing: "-0.035em", color: "var(--ink)", fontWeight: 600,
+            fontFamily: arFont, textAlign: isAr ? "right" : "left",
+          }}>
+            {t("agents.h_a")}{" "}
+            <span className="italic" style={{ fontStyle: "italic", color: "var(--accent)" }}>{t("agents.h_b")}</span>
+          </h2>
+          <p style={{
+            fontSize: 16.5, lineHeight: isAr ? 1.85 : 1.6, color: "var(--ink-2)",
+            maxWidth: 460, textWrap: "pretty", fontFamily: arFont,
+            textAlign: isAr ? "right" : "left",
+          }}>{t("agents.body")}</p>
         </div>
 
         {/* selector */}
@@ -836,9 +854,10 @@ function AgentsSection() {
             {typed < tagline.length && <span style={{ display: "inline-block", width: 9, height: 22, background: "var(--accent)", marginInlineStart: 4, verticalAlign: "-3px", animation: "agentCursor 0.85s infinite" }}/>}
           </div>
           <p style={{ fontSize: 16.5, lineHeight: isAr ? 1.85 : 1.6, color: "var(--ink-2)", maxWidth: 640, marginTop: 16, textWrap: "pretty", fontFamily: arFont, textAlign: isAr ? "right" : "left" }}>{t(ag.bodyKey)}</p>
-          <div style={{ marginTop: 32 }}>
+          <div id="how-it-works" style={{ marginTop: 32, scrollMarginTop: 100 }}>
             <FlowFigure steps={steps} isAr={isAr}/>
           </div>
+          <CapGrid label={t(`${ag.prefix}.cap.k`)} items={caps} isAr={isAr}/>
           <Compare oldLabel={t(`${ag.prefix}.cmp.old`)} newLabel={t(`${ag.prefix}.cmp.new`)} rows={cmp} isAr={isAr}/>
           <div style={{ marginTop: 30, textAlign: isAr ? "right" : "left" }}>
             <a href={ag.url} style={{
@@ -854,6 +873,7 @@ function AgentsSection() {
       <style>{`
         @keyframes agentReveal { from { opacity: 0; transform: translateY(12px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
         @keyframes agentCursor { 50% { opacity: 0; } }
+        @media (max-width: 820px){ .dd-head{ grid-template-columns: 1fr !important; gap: 24px !important; } .pad-sec{ padding: 96px 20px !important; } .agent-panel{ padding: 28px 20px 30px !important; } }
         .agent-panel { animation: agentReveal 0.5s cubic-bezier(0.2,0.7,0.2,1) both; }
         @media (max-width: 560px){ .agent-pick > button { padding: 16px 18px !important; } }
       `}</style>
@@ -959,13 +979,13 @@ function RegCorner({ pos }) {
 
 // ═════════ TERMINAL — carbon copy receipt ═════════
 const USE_CASES = [
+  { id: "or-dispatch", product: "ORCHESTRA", catKey: "terminal.cat.dispatch", title: "Dispatch 15k deliveries / month",         tools: ["route.decide", "provider.handoff", "transition"] },
+  { id: "or-watchdog", product: "ORCHESTRA", catKey: "terminal.cat.watchdog", title: "Catch every stalled order",             tools: ["sweep.scan", "provider.recheck", "escalate"] },
+  { id: "or-intake",   product: "ORCHESTRA", catKey: "terminal.cat.intake",   title: "Ingest orders from every channel",      tools: ["intake.parse", "tenant.resolve", "order.create"] },
+  { id: "or-provider", product: "ORCHESTRA", catKey: "terminal.cat.provider", title: "Provider · WhatsApp order intake",        tools: ["wa.recv", "order.collect", "order.create"] },
   { id: "ob-reply",    product: "OMNIBOX",   catKey: "terminal.cat.reply",    title: "Reply to 48k chats · median 9 sec",     tools: ["omni.recv", "intent.classify", "omni.send"] },
   { id: "ob-voice",    product: "OMNIBOX",   catKey: "terminal.cat.voice",    title: "Answer inbound voice, 24/7",            tools: ["voice.recv", "transcribe", "reply.compose"] },
   { id: "ob-comment",  product: "OMNIBOX",   catKey: "terminal.cat.comment",  title: "Turn 9,400 comments into leads",        tools: ["comment.watch", "dm.open", "lead.capture"] },
-  { id: "or-dispatch", product: "ORCHESTRA", catKey: "terminal.cat.dispatch", title: "Dispatch 15k deliveries / day",         tools: ["route.decide", "provider.handoff", "transition"] },
-  { id: "or-watchdog", product: "ORCHESTRA", catKey: "terminal.cat.watchdog", title: "Catch every stalled order",             tools: ["sweep.scan", "provider.recheck", "escalate"] },
-  { id: "or-intake",   product: "ORCHESTRA", catKey: "terminal.cat.intake",   title: "Ingest orders from every channel",      tools: ["intake.parse", "tenant.resolve", "order.create"] },
-  { id: "or-creembox", product: "ORCHESTRA", catKey: "terminal.cat.creembox", title: "CreemBox · WhatsApp order intake",       tools: ["wa.recv", "order.collect", "order.create"] },
 ];
 
 function LiveTerminal() {
@@ -1029,14 +1049,14 @@ function LiveTerminal() {
         { t: "ok",    x: `   ✓ ready_for_pickup · routed to Careem` },
         { t: "info",  x: `   intake: WhatsApp · Careem · call-center · voice` },
       ],
-      "or-creembox": [
-        { t: "cmd",   x: `$ jas run orchestra-creembox --live` },
+      "or-provider": [
+        { t: "cmd",   x: `$ jas run orchestra-provider --live` },
         { t: "info",  x: `   → inbound WhatsApp · new chat · lang=ar · "new delivery"` },
         { t: "trace", x: `   trace 0x9A01 · intent.classify = NEW_ORDER · conf 0.96` },
         { t: "trace", x: `   trace 0x9A02 · collect · sender +9627… · receiver +9627…` },
         { t: "trace", x: `   trace 0x9A03 · location.pin ✓ pickup · Abdoun` },
         { t: "trace", x: `   trace 0x9A04 · payer = receiver · COD` },
-        { t: "ok",    x: `   ✓ order.create DRAFT→PLACED · #CB-10428 · routed to dispatch` },
+        { t: "ok",    x: `   ✓ order.create DRAFT→PLACED · #PR-10428 · routed to dispatch` },
         { t: "info",  x: `   demo: live on Telegram · WhatsApp Business next` },
       ],
     };
@@ -1056,7 +1076,8 @@ function LiveTerminal() {
   const uc = USE_CASES[idx];
 
   return (
-    <section style={{ padding: "140px 48px", borderBottom: "1px solid var(--rule)" }}>
+    <section id="live" className="live-sec" style={{ padding: "140px 48px", borderBottom: "1px solid var(--rule)" }}>
+      <style>{`@media (max-width: 900px){ .live-sec{ padding: 96px 20px !important; } .live-grid{ grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; } .live-grid pre, .live-grid code{ white-space: pre-wrap; word-break: break-word; } }`}</style>
       <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         <div style={{
           display: "flex", justifyContent: "space-between", alignItems: "baseline",
@@ -1070,7 +1091,7 @@ function LiveTerminal() {
           <div className="keep-latin">LIVE · READ-ONLY · SEQ {String(idx + 1).padStart(3, "0")} / {String(USE_CASES.length).padStart(3, "0")}</div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: isAr ? "1.35fr 1fr" : "1fr 1.35fr", gap: 72, direction: isAr ? "rtl" : "ltr" }}>
+        <div className="live-grid" style={{ display: "grid", gridTemplateColumns: isAr ? "1.35fr 1fr" : "1fr 1.35fr", gap: 72, direction: isAr ? "rtl" : "ltr" }}>
           <div className="reveal" style={{ textAlign: isAr ? "right" : "left" }}>
             <h2 className="wordmark" style={{
               fontSize: "clamp(48px, 6.5vw, 84px)", lineHeight: 0.95,
@@ -1169,7 +1190,7 @@ function LiveTerminal() {
 function CTA() {
   const { t, isAr } = window.useLang();
   return (
-    <section style={{
+    <section id="contact" style={{
       padding: "180px 48px 120px",
       borderBottom: "1px solid var(--rule)",
       position: "relative", overflow: "hidden",
@@ -1211,19 +1232,28 @@ function CTA() {
         }}>
           {t("cta.body")}
         </p>
+        <p className="keep-latin" style={{ marginTop: -28, marginBottom: 36, fontSize: 14 }}>
+          <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "var(--accent)" }}>{CONTACT_EMAIL}</a>
+          {"  ·  "}
+          <a href={`tel:${CONTACT_PHONE}`} style={{ color: "var(--accent)" }}>{CONTACT_PHONE_DISPLAY}</a>
+        </p>
+        <p style={{
+          marginTop: -24, marginBottom: 36, fontSize: 14, lineHeight: 1.7, color: "var(--ink-3)",
+          fontFamily: isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined,
+        }}>{t("contact.address")}</p>
         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-          <button style={{
+          <a href={DEMO_MAILTO} style={{
             padding: "16px 30px",
             background: "var(--ink)", color: "var(--paper)",
             border: "none", fontSize: 14, fontWeight: 500, letterSpacing: "0.02em",
-            cursor: "pointer", fontFamily: "inherit",
-          }}>{t("cta.btn_primary")}</button>
-          <button style={{
+            cursor: "pointer", fontFamily: "inherit", textDecoration: "none",
+          }}>{t("cta.btn_primary")}</a>
+          <a href="#faq" style={{
             padding: "16px 26px",
             background: "transparent", color: "var(--ink)",
             border: "1px solid var(--rule-strong)", fontSize: 14,
-            fontWeight: 500, cursor: "pointer", fontFamily: "inherit",
-          }}>{t("cta.btn_secondary")}</button>
+            fontWeight: 500, cursor: "pointer", fontFamily: "inherit", textDecoration: "none",
+          }}>{t("cta.btn_secondary")}</a>
         </div>
 
         {/* Signature stamp */}
@@ -1252,9 +1282,7 @@ function CTA() {
 function Footer() {
   const { t, isAr } = window.useLang();
   const footerLinks = [
-    { key: "GitHub",  label: "GitHub",                 href: "#" },
-    { key: "docs",    label: t("footer.docs"),         href: "#" },
-    { key: "status",  label: t("footer.status"),       href: "#" },
+    { key: "contact", label: t("footer.contact"),      href: `mailto:${CONTACT_EMAIL}` },
     { key: "terms",   label: t("footer.terms"),        href: "legal.html#terms" },
     { key: "privacy", label: t("footer.privacy"),      href: "legal.html#privacy" },
     { key: "refund",  label: t("footer.refund"),       href: "legal.html#refund" },
@@ -1272,7 +1300,7 @@ function Footer() {
           paddingBottom: 24, borderBottom: "1px solid var(--rule)", marginBottom: 20,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="assets/jas-mark-transparent.png" alt="" style={{ height: 28, width: "auto", opacity: 0.9 }}/>
+            <img src="assets/jas-mark-transparent.png" alt="" width="31" height="28" loading="lazy" style={{ height: 28, width: "auto", opacity: 0.9 }}/>
             <span className="keep-latin">JAS AGENTS &nbsp;·&nbsp; ESTD. MMXXVI</span>
           </div>
           <div className="keep-latin">SET IN DM SANS &amp; JETBRAINS MONO</div>
@@ -1283,7 +1311,15 @@ function Footer() {
           fontSize: 12, color: "var(--ink-2)",
           fontFamily: isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined,
         }}>
-          <div>{t("footer.copy")}</div>
+          <address style={{ fontStyle: "normal", lineHeight: 1.7 }}>
+            <div>{t("footer.copy")}</div>
+            <div>{t("contact.address")}</div>
+            <div className="keep-latin">
+              <a href={`tel:${CONTACT_PHONE}`} style={{ color: "var(--ink-2)" }}>{CONTACT_PHONE_DISPLAY}</a>
+              {"  ·  "}
+              <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "var(--ink-2)" }}>{CONTACT_EMAIL}</a>
+            </div>
+          </address>
           <div style={{ display: "flex", gap: 22, flexWrap: "wrap" }}>
             {footerLinks.map(l => (
               <a key={l.key} href={l.href} style={{ color: "var(--ink-2)", textDecoration: "none" }}>{l.label}</a>
@@ -1316,4 +1352,121 @@ function Footer() {
   );
 }
 
-Object.assign(window, { Nav, Hero, LogoStrip, Fleet, OmniBoxSection, OrchestraSection, EngineSection, LiveTerminal, CTA, Footer });
+// ═════════ SHARED: section header + heading (mono rule, big h2, lede) ═════════
+function SectionHead({ t, isAr, sectionKey, figKey, hAKey, hBKey, bodyKey }) {
+  const arFont = isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined;
+  return (
+    <>
+      <div style={{
+        display: "flex", justifyContent: "space-between", alignItems: "baseline",
+        fontFamily: isAr ? arFont : "'JetBrains Mono', monospace",
+        fontSize: isAr ? 12 : 10, color: "var(--ink-3)",
+        letterSpacing: isAr ? "0.03em" : "0.25em", marginBottom: 32,
+        paddingBottom: 18, borderBottom: "1px solid var(--rule)",
+        direction: isAr ? "rtl" : "ltr",
+      }}>
+        <div>{t(sectionKey)}</div>
+        <div className={isAr ? "" : "keep-latin"}>{t(figKey)}</div>
+      </div>
+      <div className="dd-head" style={{
+        display: "grid", gridTemplateColumns: isAr ? "1fr 1.15fr" : "1.15fr 1fr",
+        gap: 56, alignItems: "end", direction: isAr ? "rtl" : "ltr", marginBottom: 50,
+      }}>
+        <h2 className="wordmark" style={{
+          fontSize: "clamp(38px, 5vw, 68px)", lineHeight: 0.97,
+          letterSpacing: "-0.035em", color: "var(--ink)", fontWeight: 600,
+          fontFamily: arFont, textAlign: isAr ? "right" : "left",
+        }}>
+          {t(hAKey)}{" "}
+          <span className="italic" style={{ fontStyle: "italic", color: "var(--accent)" }}>{t(hBKey)}</span>
+        </h2>
+        {bodyKey && <p style={{
+          fontSize: 16.5, lineHeight: isAr ? 1.85 : 1.6, color: "var(--ink-2)",
+          maxWidth: 460, textWrap: "pretty", fontFamily: arFont,
+          textAlign: isAr ? "right" : "left",
+        }}>{t(bodyKey)}</p>}
+      </div>
+      <style>{`@media (max-width: 820px){ .dd-head{ grid-template-columns: 1fr !important; gap: 24px !important; } }`}</style>
+    </>
+  );
+}
+
+// ═════════ WHO IT'S FOR ═════════
+function WhoSection() {
+  const { t, isAr } = window.useLang();
+  const arFont = isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined;
+  const items = [1, 2, 3, 4].map(n => ({ tag: t(`who${n}.tag`), t: t(`who${n}.t`), d: t(`who${n}.d`) }));
+  return (
+    <section id="who" className="pad-sec" style={{ padding: "140px 48px", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+        <SectionHead t={t} isAr={isAr} sectionKey="who.section" figKey="who.fig" hAKey="who.h_a" hBKey="who.h_b" bodyKey="who.body"/>
+        <div className="who-grid" style={{
+          display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1,
+          background: "var(--rule)", border: "1px solid var(--rule)",
+          direction: isAr ? "rtl" : "ltr",
+        }}>
+          {items.map((c, i) => (
+            <div key={i} className="reveal" style={{ background: "var(--paper)", padding: "28px 24px 30px", textAlign: isAr ? "right" : "left" }}>
+              <div className="keep-latin" style={{
+                fontFamily: "'JetBrains Mono', monospace", fontSize: 9,
+                letterSpacing: "0.2em", color: "var(--stamp)", marginBottom: 16,
+              }}>{String(i + 1).padStart(2, "0")} · {c.tag}</div>
+              <h3 style={{ fontSize: 19, fontWeight: 600, color: "var(--ink)", marginBottom: 10, lineHeight: 1.25, fontFamily: arFont }}>{c.t}</h3>
+              <p style={{ fontSize: 14.5, lineHeight: isAr ? 1.8 : 1.55, color: "var(--ink-2)", fontFamily: arFont }}>{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`@media (max-width: 1000px){ .who-grid{ grid-template-columns: 1fr 1fr !important; } } @media (max-width: 560px){ .who-grid{ grid-template-columns: 1fr !important; } }`}</style>
+    </section>
+  );
+}
+
+// ═════════ FAQ — native <details> so answers stay in the DOM for crawlers ═════════
+const FAQ_COUNT = 9;
+
+function FAQSection() {
+  const { t, isAr } = window.useLang();
+  const arFont = isAr ? "'IBM Plex Sans Arabic', sans-serif" : undefined;
+  return (
+    <section id="faq" className="pad-sec" style={{ padding: "140px 48px", borderBottom: "1px solid var(--rule)" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+        <SectionHead t={t} isAr={isAr} sectionKey="faq.section" figKey="faq.fig" hAKey="faq.h_a" hBKey="faq.h_b"/>
+        <div style={{ borderTop: "1px solid var(--rule-strong)", direction: isAr ? "rtl" : "ltr" }}>
+          {Array.from({ length: FAQ_COUNT }, (_, i) => i + 1).map(n => (
+            <details key={n} className="faq-item" open={n === 1} style={{ borderBottom: "1px solid var(--rule)" }}>
+              <summary style={{
+                listStyle: "none", cursor: "pointer",
+                display: "grid", gridTemplateColumns: "56px 1fr 24px", alignItems: "baseline",
+                padding: "24px 0", textAlign: isAr ? "right" : "left",
+              }}>
+                <span className="keep-latin" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.2em", color: "var(--ink-3)" }}>
+                  Q{String(n).padStart(2, "0")}
+                </span>
+                <h3 style={{ fontSize: "clamp(18px, 2vw, 23px)", fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, letterSpacing: "-0.01em", fontFamily: arFont }}>
+                  {t(`faq${n}.q`)}
+                </h3>
+                <span className="faq-sign" aria-hidden style={{ fontSize: 20, color: "var(--accent)", textAlign: "center" }}>+</span>
+              </summary>
+              <p style={{
+                padding: isAr ? "0 56px 28px 24px" : "0 24px 28px 56px", maxWidth: 820,
+                fontSize: 16, lineHeight: isAr ? 1.9 : 1.65, color: "var(--ink-2)",
+                fontFamily: arFont, textAlign: isAr ? "right" : "left",
+              }}>{t(`faq${n}.a`)}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+      <style>{`
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item[open] .faq-sign { transform: rotate(45deg); }
+        .faq-sign { transition: transform 0.2s; display: inline-block; }
+        .faq-item summary:hover h3 { color: var(--accent) !important; }
+        @media (max-width: 560px){ .faq-item summary{ grid-template-columns: 40px 1fr 20px !important; } .faq-item p{ padding-inline-start: 40px !important; } }
+      `}</style>
+    </section>
+  );
+}
+
+Object.assign(window, { SectionHead, CapGrid, FlowFigure, RegCorner, CONTACT_EMAIL, DEMO_MAILTO, PRODUCT_URLS });
+Object.assign(window, { Nav, Hero, LogoStrip, Fleet, OmniBoxSection, OrchestraSection, EngineSection, LiveTerminal, WhoSection, FAQSection, CTA, Footer });

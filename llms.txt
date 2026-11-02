@@ -1,0 +1,26 @@
+# JAS Agents — Orchestra AI
+
+> Orchestra AI, by JAS Agents (JAS, جاس) of Amman, Jordan, is the first autonomous operations agent for logistics. It doesn't just monitor a fleet — it runs the operations loop on every active order, intervenes by AI voice call and WhatsApp, and assembles the evidence to win disputed charges. It serves delivery, parcel, fuel, cement/ready-mix and industrial logistics, in Arabic and English, 24/7. JAS also makes OmniBox, an AI customer-service inbox.
+
+## Orchestra AI — autonomous operations for logistics
+
+- How it works: a continuous loop on every active order — Sense (location, timing, communication, driver behavior, financial state), Understand (context-aware: a vehicle stopped near pickup is loading, not stalled), Decide (configurable rules for when to intervene, who to contact, how to escalate), Act (voice calls and WhatsApp to drivers, vendors and receivers), Remember (auditable record of every action and outcome).
+- Capabilities: real-time incident detection; autonomous intervention; per-shipment evidence trails (GPS, timestamps, communications); automated claim drafting for fines, disputed charges and demurrage; multi-channel coordination in each party's language; driver, vendor and route performance scoring.
+- Results: stalls detected in under 2 minutes with context; 70%+ recovery rate on disputed charges; identical performance at 4 AM and 4 PM; new markets live in days instead of weeks or months.
+- Depots, plants and sites: staggered arrival dispatch, real-time queue position for drivers, idle time logged with GPS as billable evidence, automated contact with site managers. Applies to cement plants, ready-mix batching, fuel depots, cold-storage docks, warehouse receiving, construction sites and distribution centers.
+- Verticals: in production for restaurant delivery and grocery fulfillment; in contracting for parcel and last-mile delivery, fuel and energy distribution, and industrial logistics (cement, ready-mix, chemicals).
+- Principles: deterministic first (AI only where reasoning is needed); safety by default (financial actions never auto-proceed; one attempt, then human escalation); always on. Governing metric: HTPO — human touches per 100 orders — driven toward zero.
+- Pilot: 8 weeks, no multi-year contract. Weeks 1–2 scope and connect to existing dispatch/tracking systems; weeks 3–4 shadow mode; weeks 5–6 supervised autonomy on low-risk incidents; weeks 7–8 report HTPO, claims recovered, incidents absorbed and false-positive rate.
+- [Orchestra AI app](https://order.jas.it.com/)
+
+## OmniBox — AI customer service
+
+- [OmniBox](https://omnibox.jas.it.com/): one inbox for WhatsApp, Instagram, Facebook, Telegram and web chat, with an AI agent trained on the business's content that replies 24/7 in Arabic or English, verifies replies before sending, and hands off to a human when needed.
+
+## Company
+
+- In production with brands in Jordan including McDonald's, KFC, Pizza Hut, Hardee's, Sumacco, HyperMax, Abu Khader BMW, Infoseed, Diken Group and Careem.
+- Location: Taiba Commercial Complex, Prince Hassan Street (formerly Madaba Street), opposite Qasr Al-Ghaba Restaurant, Amman, Jordan. Serves the Middle East and North Africa.
+- Contact / pilot requests: info@jas.it.com, +962 79 800 0383
+- Website: https://jas.it.com/
+- [Legal: terms, privacy, refunds, cancellation, delivery](https://jas.it.com/legal.html)
