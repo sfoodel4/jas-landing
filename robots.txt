@@ -2,7 +2,9 @@
 User-agent: *
 Allow: /
 
-# AI search & assistant crawlers are welcome (GEO)
+# AI crawlers policy (SEO-13, 07/11/2026): AI search, assistant and training crawlers
+# are welcome on this site (jas.it.com). The app at order.jas.it.com keeps them off
+# its app paths; see that site's robots.txt.
 User-agent: GPTBot
 Allow: /
 User-agent: OAI-SearchBot
