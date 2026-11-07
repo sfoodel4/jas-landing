@@ -426,36 +426,6 @@ html[dir="rtl"] .folio { right: auto; left: 24px; text-align: left; }
 .reveal-stamp { opacity: 0; }
 .reveal-stamp.in { animation: stamp 0.55s cubic-bezier(0.3, 1.3, 0.5, 1) forwards; }
 
-/* Tweaks panel */
-.tweaks {
-  position: fixed; right: 24px; bottom: 24px; z-index: 500;
-  width: 260px;
-  background: var(--paper);
-  border: 1px solid var(--rule-strong);
-  border-radius: 4px;
-  padding: 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  display: none;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-}
-.tweaks.open { display: block; }
-.tweaks h4 { font-size: 9px; letter-spacing: 0.2em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 12px; }
-.tweak-row { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-.tweak-btn {
-  flex: 1; min-width: 64px;
-  background: transparent;
-  border: 1px solid var(--rule-strong);
-  color: var(--ink-2);
-  padding: 7px 8px;
-  font-family: inherit; font-size: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.08em;
-}
-.tweak-btn:hover { border-color: var(--ink); color: var(--ink); }
-.tweak-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.tweak-label { font-size: 9px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -632,47 +602,7 @@ html[dir="rtl"] .folio { right: auto; left: 24px; text-align: left; }
   </div>
 </div>
 
-<!-- TWEAKS -->
-<div class="tweaks" id="tweaks-panel">
-  <h4>Tweaks</h4>
-  <div class="tweak-label">Accent</div>
-  <div class="tweak-row" id="accent-row">
-    <button class="tweak-btn" data-accent="#2b4de8">COBALT</button>
-    <button class="tweak-btn" data-accent="#7fa0ff">SOFT</button>
-    <button class="tweak-btn" data-accent="#c94a2b">STAMP</button>
-    <button class="tweak-btn" data-accent="#e07050">EMBER</button>
-  </div>
-  <div class="tweak-label">Paper fold</div>
-  <div class="tweak-row" id="fold-row">
-    <button class="tweak-btn" data-fold="on">ON</button>
-    <button class="tweak-btn" data-fold="off">OFF</button>
-  </div>
-</div>
-
 <script>
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "accent": "",
-  "fold": "on"
-}/*EDITMODE-END*/;
-
-window.__tweaks = { ...TWEAK_DEFAULTS };
-window.__subscribers = new Set();
-window.__notify = () => window.__subscribers.forEach(f => f(window.__tweaks));
-
-function applyAccent(hex) {
-  if (!hex) { document.documentElement.style.removeProperty('--accent'); return; }
-  document.documentElement.style.setProperty('--accent', hex);
-}
-function applyFold(on) {
-  document.body.style.setProperty('--fold-op', on === 'on' ? '1' : '0');
-  const style = document.getElementById('fold-style') || document.createElement('style');
-  style.id = 'fold-style';
-  style.textContent = on === 'on' ? '' : 'body::after { display: none; }';
-  if (!style.parentNode) document.head.appendChild(style);
-}
-applyAccent(window.__tweaks.accent);
-applyFold(window.__tweaks.fold);
-
 // Theme toggle
 window.__theme = localStorage.getItem('jas-theme') || 'dark';
 function applyTheme(t) {
@@ -680,7 +610,6 @@ function applyTheme(t) {
   localStorage.setItem('jas-theme', t);
   window.__theme = t;
   document.getElementById('theme-toggle').textContent = t === 'light' ? '☾' : '☀';
-  window.__notify && window.__notify();
 }
 applyTheme(window.__theme);
 document.getElementById('theme-toggle').addEventListener('click', () => {
@@ -711,41 +640,6 @@ window.addEventListener('scroll', () => {
   const pct = Math.round((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100);
   document.getElementById('folio-pct').textContent = String(Math.max(0, Math.min(100, pct))).padStart(2, '0');
 }, { passive: true });
-
-// Edit mode
-window.addEventListener('message', (e) => {
-  if (e.data?.type === '__activate_edit_mode') {
-    document.getElementById('tweaks-panel').classList.add('open');
-    refreshTweakUI();
-  }
-  if (e.data?.type === '__deactivate_edit_mode') {
-    document.getElementById('tweaks-panel').classList.remove('open');
-  }
-});
-window.parent.postMessage({type: '__edit_mode_available'}, '*');
-
-function refreshTweakUI() {
-  document.querySelectorAll('#accent-row .tweak-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.accent === window.__tweaks.accent);
-  });
-  document.querySelectorAll('#fold-row .tweak-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.fold === window.__tweaks.fold);
-  });
-}
-document.getElementById('accent-row').addEventListener('click', (e) => {
-  const b = e.target.closest('.tweak-btn'); if (!b) return;
-  window.__tweaks.accent = b.dataset.accent;
-  applyAccent(b.dataset.accent);
-  window.__notify(); refreshTweakUI();
-  window.parent.postMessage({type:'__edit_mode_set_keys', edits:{accent: b.dataset.accent}}, '*');
-});
-document.getElementById('fold-row').addEventListener('click', (e) => {
-  const b = e.target.closest('.tweak-btn'); if (!b) return;
-  window.__tweaks.fold = b.dataset.fold;
-  applyFold(b.dataset.fold);
-  window.__notify(); refreshTweakUI();
-  window.parent.postMessage({type:'__edit_mode_set_keys', edits:{fold: b.dataset.fold}}, '*');
-});
 
 // Reveal-on-scroll
 const io = new IntersectionObserver((entries) => {
