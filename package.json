@@ -1,0 +1,12 @@
+{
+  "name": "jas-landing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "build:check": "node tools/build.mjs --check"
+  },
+  "devDependencies": {
+    "@babel/standalone": "7.29.0"
+  }
+}
