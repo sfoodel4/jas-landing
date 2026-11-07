@@ -35,7 +35,7 @@ function Nav() {
       borderBottom: "1px solid var(--rule)",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <img src="assets/jas-mark-transparent.png" alt="JAS Agents logo" width="45" height="40" style={{
+        <img src="/assets/jas-mark-transparent.png" alt="JAS Agents logo" width="45" height="40" style={{
           height: 40, width: "auto", display: "block",
           filter: "contrast(1.05)",
         }}/>
@@ -1283,11 +1283,11 @@ function Footer() {
   const { t, isAr } = window.useLang();
   const footerLinks = [
     { key: "contact", label: t("footer.contact"),      href: `mailto:${CONTACT_EMAIL}` },
-    { key: "terms",   label: t("footer.terms"),        href: "legal.html#terms" },
-    { key: "privacy", label: t("footer.privacy"),      href: "legal.html#privacy" },
-    { key: "refund",  label: t("footer.refund"),       href: "legal.html#refund" },
-    { key: "cancel",  label: t("footer.cancellation"), href: "legal.html#cancellation" },
-    { key: "deliver", label: t("footer.delivery"),     href: "legal.html#delivery" },
+    { key: "terms",   label: t("footer.terms"),        href: "/legal.html#terms" },
+    { key: "privacy", label: t("footer.privacy"),      href: "/legal.html#privacy" },
+    { key: "refund",  label: t("footer.refund"),       href: "/legal.html#refund" },
+    { key: "cancel",  label: t("footer.cancellation"), href: "/legal.html#cancellation" },
+    { key: "deliver", label: t("footer.delivery"),     href: "/legal.html#delivery" },
   ];
   return (
     <footer style={{ padding: "60px 48px 36px", direction: isAr ? "rtl" : "ltr" }}>
@@ -1300,7 +1300,7 @@ function Footer() {
           paddingBottom: 24, borderBottom: "1px solid var(--rule)", marginBottom: 20,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="assets/jas-mark-transparent.png" alt="" width="31" height="28" loading="lazy" style={{ height: 28, width: "auto", opacity: 0.9 }}/>
+            <img src="/assets/jas-mark-transparent.png" alt="" width="31" height="28" loading="lazy" style={{ height: 28, width: "auto", opacity: 0.9 }}/>
             <span className="keep-latin">JAS AGENTS &nbsp;·&nbsp; ESTD. MMXXVI</span>
           </div>
           <div className="keep-latin">SET IN DM SANS &amp; JETBRAINS MONO</div>

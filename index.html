@@ -9,15 +9,15 @@
 <meta name="keywords" content="autonomous logistics operations, AI dispatcher, fleet operations AI, logistics AI agent, delivery dispatch automation, demurrage claims, fuel logistics, ready-mix logistics, Jordan, MENA" />
 <link rel="canonical" href="https://jas.it.com/" />
 <link rel="alternate" hreflang="en" href="https://jas.it.com/" />
-<link rel="alternate" hreflang="ar" href="https://jas.it.com/" />
+<link rel="alternate" hreflang="ar" href="https://jas.it.com/ar/" />
 <link rel="alternate" hreflang="x-default" href="https://jas.it.com/" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="author" content="JAS Agents" />
 <meta name="theme-color" content="#1a1612" />
 <meta name="geo.region" content="JO-AM" />
 <meta name="geo.placename" content="Amman" />
-<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png" />
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
 <!-- Open Graph / social -->
 <meta property="og:type" content="website" />
@@ -354,6 +354,7 @@ body::after {
   font-size: 12px; font-weight: 600;
   font-family: 'DM Sans', system-ui, sans-serif;
   letter-spacing: 0.03em;
+  text-decoration: none;
   transition: all 0.25s;
 }
 .lang-toggle:hover { background: var(--ink); color: var(--paper); }
@@ -431,15 +432,16 @@ html[dir="rtl"] .folio { right: auto; left: 24px; text-align: left; }
 <div class="folio" id="folio">JAS &nbsp; · &nbsp; MMXXVI<br/><span id="folio-pct">00</span> / 100</div>
 
 <button class="theme-toggle" id="theme-toggle" title="Toggle theme">☾</button>
-<button class="lang-toggle" id="lang-toggle" title="Change language">ع</button>
+<a class="lang-toggle" id="lang-toggle" href="/ar/" hreflang="ar" lang="ar" title="العربية">ع</a>
 
 <div id="root">
   <!-- Static, crawlable version of the page. Search engines and AI crawlers
        that don't execute JavaScript read this; React replaces it on load.
        Keep it in sync with src/i18n.jsx when the copy changes. -->
+  <!-- STATIC:BEGIN — tools/build.mjs puts src/static-ar.html here on /ar/ -->
   <div class="ssr">
   <header>
-    <p><a href="/"><img src="assets/jas-mark-transparent.png" alt="JAS Agents logo" width="45" height="40" /> <strong>JAS Agents</strong></a> — Orchestra AI</p>
+    <p><a href="/"><img src="/assets/jas-mark-transparent.png" alt="JAS Agents logo" width="45" height="40" /> <strong>JAS Agents</strong></a> — Orchestra AI</p>
     <nav aria-label="Main">
       <a href="#loop">How it works</a> · <a href="#verticals">Industries</a> · <a href="#pilot">Pilot</a> · <a href="#faq">FAQ</a> · <a href="#omnibox">OmniBox</a> · <a href="mailto:info@jas.it.com">Contact</a>
     </nav>
@@ -596,9 +598,10 @@ html[dir="rtl"] .folio { right: auto; left: 24px; text-align: left; }
   <footer>
     <p>JAS Agents is the name we use for our technology and AI services, which are provided by شركة الحلول النوعية للذكاء الاصطناعي (a limited liability company registered in the Hashemite Kingdom of Jordan).</p>
     <p lang="ar" dir="rtl">JAS Agents هو اسم نستخدمه للتعريف بخدماتنا التقنية والذكاء الاصطناعي، والتي تقدمها شركة الحلول النوعية للذكاء الاصطناعي / ذات مسؤولية محدودة، المسجلة في المملكة الأردنية الهاشمية.</p>
-    <p>© 2026 JAS Agents · Amman, Jordan · <a href="legal.html#terms">Terms</a> · <a href="legal.html#privacy">Privacy</a> · <a href="legal.html#refund">Refunds</a> · <a href="legal.html#cancellation">Cancellation</a> · <a href="legal.html#delivery">Delivery</a></p>
+    <p>© 2026 JAS Agents · Amman, Jordan · <a href="/legal.html#terms">Terms</a> · <a href="/legal.html#privacy">Privacy</a> · <a href="/legal.html#refund">Refunds</a> · <a href="/legal.html#cancellation">Cancellation</a> · <a href="/legal.html#delivery">Delivery</a></p>
   </footer>
   </div>
+  <!-- STATIC:END -->
 </div>
 
 <script>
@@ -616,22 +619,10 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 });
 
 // ──────── LANGUAGE (i18n) ────────
+// The URL decides the language: / is English, /ar/ is Arabic (lang/dir are set on <html>).
+// The toggle is a plain link between the two pages.
 window.__langSubs = new Set();
-window.__lang = localStorage.getItem('jas-lang') || 'en';
-function applyLang(l) {
-  const isAr = l === 'ar';
-  document.documentElement.setAttribute('lang', l);
-  document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
-  localStorage.setItem('jas-lang', l);
-  window.__lang = l;
-  const btn = document.getElementById('lang-toggle');
-  if (btn) btn.textContent = isAr ? 'EN' : 'ع';
-  window.__langSubs.forEach(fn => fn(l));
-}
-applyLang(window.__lang);
-document.getElementById('lang-toggle').addEventListener('click', () => {
-  applyLang(window.__lang === 'en' ? 'ar' : 'en');
-});
+window.__lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
 
 // Running folio / progress
 window.addEventListener('scroll', () => {
@@ -672,9 +663,9 @@ mo.observe(document.getElementById('root'), { childList: true, subtree: true });
 </script>
 
 <!-- Compiled from src/*.jsx by `npm run build` (tools/build.mjs). -->
-<script src="js/i18n.js"></script>
-<script src="js/sections.js"></script>
-<script src="js/logistics.js"></script>
-<script src="js/app.js"></script>
+<script src="/js/i18n.js"></script>
+<script src="/js/sections.js"></script>
+<script src="/js/logistics.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
